@@ -13,3 +13,9 @@ Item.all.each do |item|
   item.save
   counter += 1
 end
+
+# seed users to try and address spec error - NoMethodError:
+# undefined method `carts' for nil:NilClass
+# ./spec/models/user_spec.rb:14:in `block (2 levels) in <top (required)>
+User.create(email:"a@b.c",password: "password")
+User.create(email:"a@b.c",password: "password")
