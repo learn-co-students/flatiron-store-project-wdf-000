@@ -4,6 +4,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def current_cart
-    Cart.find_by(id: session[:cart_id])
+    Cart.find_by(user_id: current_user.id) if current_user
   end
 end

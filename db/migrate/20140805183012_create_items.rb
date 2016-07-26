@@ -3,7 +3,7 @@ class CreateItems < ActiveRecord::Migration
     create_table :items do |t|
       t.string :title
       t.integer :inventory
-      t.float :price
+      t.integer :price
       t.belongs_to :category
     end
   end
