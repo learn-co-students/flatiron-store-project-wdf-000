@@ -8,7 +8,11 @@ class User < ActiveRecord::Base
   has_many :carts
 
   def current_cart=(cart)
-    cart.user_id = id if cart
+    if cart
+      cart.user_id = id
+    elsif current_cart
+      current_cart.update(user_id: nil)
+    end 
   end
 
   def current_cart
