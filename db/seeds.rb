@@ -4,7 +4,7 @@
     inventory: Faker::Number.number(2), 
     price: Faker::Number.number(4)
   )
-  Category.create(title: Faker::Commerce.department)
+  Category.create(title: "test")#Faker::Commerce.department)
 end
 
 counter = 1
@@ -13,3 +13,5 @@ Item.all.each do |item|
   item.save
   counter += 1
 end
+
+FactoryGirl.create(:user, :password => 'password', :email => 'email@gmail.com')
