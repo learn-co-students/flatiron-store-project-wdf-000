@@ -43,6 +43,7 @@ describe 'Feature Test: Cart', :type => :feature do
 
        @second_item.reload
        @first_item.reload
+       # binding.pry
        expect(@first_item.inventory).to eq(first_item_inventory_before-1)
        expect(@second_item.inventory).to eq(second_item_inventory_before-3)
      end
@@ -52,6 +53,7 @@ describe 'Feature Test: Cart', :type => :feature do
        click_button("Checkout")
 
        @user.reload
+       # binding.pry
        expect(@user.current_cart).to be_nil 
      end
     end
@@ -70,6 +72,7 @@ describe 'Feature Test: Cart', :type => :feature do
         first_item.line_items.create(quantity: 1, cart: cart)
         @user.current_cart = nil
         visit store_path
+	# binding.pry
         expect(page).to_not have_link("Cart")
       end
 
@@ -79,6 +82,7 @@ describe 'Feature Test: Cart', :type => :feature do
         first_item.line_items.create(quantity: 1, cart: @user.current_cart)
         @user.save
         visit store_path
+	# binding.pry
         expect(page).to have_link("Cart", href: cart_path(@user.current_cart))
       end
 
@@ -91,6 +95,7 @@ describe 'Feature Test: Cart', :type => :feature do
           click_button("Add to Cart")
         end
         @user.reload
+	# binding.pry
         expect(@user.current_cart).to_not be_nil
       end
 
@@ -125,6 +130,7 @@ describe 'Feature Test: Cart', :type => :feature do
           click_button("Add to Cart")
         end
         @user.reload
+      	# binding.pry
         expect(@user.current_cart.items).to include(first_item)
       end
 
@@ -147,6 +153,7 @@ describe 'Feature Test: Cart', :type => :feature do
           end
         end
         @user.reload
+	# binding.pry
         expect(@user.current_cart.items.count).to eq(1)
         expect(@user.current_cart.line_items.count).to eq(1)
         expect(@user.current_cart.line_items.first.quantity).to eq(2)
