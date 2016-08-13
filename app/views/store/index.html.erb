@@ -1,7 +1,14 @@
-<% @categories.each do |category| %>
+<% if @user && @user.current_cart && @user.current_cart_id != -1 %>
+  <%= link_to "Cart", cart_path(@user.current_cart) %><br>
+
+<% end %>
+
+<h3>Categories</h3>
+<%= @categories.each do |category| %>
   <%= link_to category.title, category_path(category) %>
 <% end %>
 
-<% @items.each do |item| %>
-  <p><%= item.title %> | <%= number_to_currency(item.price) %> | <%= button_to 'Add to Cart', line_items_path(item_id: item) %></p>
+<h3>Items</h3>
+<%= @items.each do |item| %>
+  <p><%= item.title %> | <%= number_to_currency(item.price/100) %> | <%= button_to 'Add to Cart', line_items_path(item_id: item.id) %></p>
 <% end %>

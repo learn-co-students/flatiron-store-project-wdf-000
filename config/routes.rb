@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  devise_for :users, controllers: {
+    sessions: 'users/sessions'
+  }
+
+  resources :item_categories
+
   root 'store#index', as: 'store'
 
   resources :items, only: [:show, :index]
