@@ -1,5 +1,6 @@
 <h1><%= @item.title %></h1>
 
 <ul>
-  Price: <%= @item.price %>
+  Price:
+    | <%= "$#{@item.price.to_f/100}" %> | 
 </ul>
