@@ -12,3 +12,10 @@
 <p>Order total: <strong><%= "$#{@cart.total.to_f/100}" %></strong> </p>
 
 <%= (button_to 'Checkout', checkout_path) if @cart.status != "submitted" %>
+<% if @cart.status == 'submitted' %>
+<strong>Submitted</strong>
+<% end %>
+
+
+
+
