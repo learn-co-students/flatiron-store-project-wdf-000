@@ -145,6 +145,7 @@ describe 'Feature Test: Cart', :type => :feature do
           within("form[action='#{line_items_path(item_id: first_item)}']") do
             click_button("Add to Cart")
           end
+          # binding.pry
         end
         @user.reload
         expect(@user.current_cart.items.count).to eq(1)
