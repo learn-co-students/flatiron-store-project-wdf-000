@@ -19,7 +19,7 @@ RSpec.describe Cart, :type => :model do
 
   it 'can calculate its total' do 
     Item.second.line_items.create(quantity: 1, cart: @cart)
-    expect(@cart.total).to eq(@item.price + Item.second.price)
+    expect(@cart.total).to eq((@item.price + Item.second.price).round(2))
   end
 
 
