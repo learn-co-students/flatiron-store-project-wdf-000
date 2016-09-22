@@ -4,5 +4,8 @@
         <% if !!@cart %>
           <li> <%= link_to "Cart", cart_path(current_cart) %></li>
         <% end %>
+        <% if current_user %>
+          <li> Signed in as <%= current_user.email %></li>
+        <% end %>
     </ul>
 </nav>

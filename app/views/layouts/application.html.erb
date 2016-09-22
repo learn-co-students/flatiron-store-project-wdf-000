@@ -9,8 +9,11 @@
 </head>
 <body>
 
+<%= render 'layouts/messages'%>
 <%= render 'layouts/header' %>
 <%= yield %>
-
+<%= link_to("Sign out", destroy_user_session_path, method: :delete) if current_user %>
+<%= link_to("sign in", new_user_session_path) if current_user.nil? %>
+<%= link_to("Sign up", new_user_registration_path) if current_user.nil? %>
 </body>
 </html>
