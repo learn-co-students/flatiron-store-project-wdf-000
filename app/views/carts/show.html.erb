@@ -1,10 +1,11 @@
-<h1>Your Cart</h1>
+<h1>Your Cart </h1>
 
 <% if notice %>
   <p><%= notice %></p>
 <% end %>
 
 <% if !current_cart.nil? %>
+<h3> Status: <%=current_cart.status%> </h3>
 <% current_cart.line_items.each do |line_item| %>
   <p><%= link_to line_item.item.title, item_path(line_item.item) %> | <%= number_to_currency(line_item.item.price/100) %> | Quantity: <%= line_item.quantity %> | <% if line_item.item.inventory < 5 %>
     <strong>There are only <%= line_item.item.inventory %> left in stock.</strong>
@@ -13,5 +14,12 @@
 
 <p>Order total: <strong><%= number_to_currency(current_cart.total/100) %></strong> </p>
 
-<%= (button_to 'Checkout', checkout_path) %>
+<%= ((button_to 'Checkout', checkout_path) unless current_cart.status == "submitted") %>
+
+<%  elsif !last_cart.nil? %>
+<h3> Status: <%=last_cart.status%> </h3>
+  <% last_cart.line_items.each do |line_item| %>
+    <p><%= link_to line_item.item.title, item_path(line_item.item) %> | <%= number_to_currency(line_item.item.price/100) %> | Quantity: <%= line_item.quantity %>
+      <% end %> </p>
+    <p>Order total: <strong><%= number_to_currency(last_cart.total/100) %></strong> </p>
 <% end %>

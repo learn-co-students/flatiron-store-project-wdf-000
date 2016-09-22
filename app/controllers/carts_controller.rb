@@ -5,6 +5,9 @@ class CartsController < ApplicationController
       item.update_inventory(cart)
     end
     cart.update(status: "submitted")
+    flash[:message] = "Your order has been submitted"
+    current_user.update(current_cart: nil)
+
     redirect_to cart_path(cart)
   end
 end

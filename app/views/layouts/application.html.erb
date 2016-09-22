@@ -9,6 +9,7 @@
 </head>
 <body>
 
+<%= render 'layouts/messages'%>
 <%= render 'layouts/header' %>
 <%= yield %>
 <%= link_to("Sign out", destroy_user_session_path, method: :delete) if current_user %>

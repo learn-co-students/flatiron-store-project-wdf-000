@@ -6,7 +6,8 @@ class User < ActiveRecord::Base
   has_many :carts
 
   def current_cart=(cart)
-    self.current_cart_id = cart.id unless cart.nil?
+    cart.nil? ? self.current_cart_id = nil : self.current_cart_id = cart.id #unless cart.nil?
+    self.save
   end
 
   def current_cart

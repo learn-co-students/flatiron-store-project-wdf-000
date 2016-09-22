@@ -6,7 +6,7 @@ class Cart < ActiveRecord::Base
   def total
     item_quantities = Hash.new(0)
     self.line_items.each_with_object(item_quantities) do |item, item_quantities|
-      item_quantities[item.id] = item.quantity
+      item_quantities[item.item_id] = item.quantity
     end
     self.items.collect{ |item| item.price * item_quantities[item.id]  }.inject(0){ |sum, price| sum + price }
   end
