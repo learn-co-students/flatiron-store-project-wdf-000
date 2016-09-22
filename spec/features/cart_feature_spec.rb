@@ -154,10 +154,7 @@ describe 'Feature Test: Cart', :type => :feature do
         expect(@user.current_cart.line_items.first.quantity).to eq(2)
         expect(page).to have_content("Quantity: 2")
         total = first_item.price * 2
-        formatted = "%.2f" % total.to_f
-        place_comma = formatted.match(/(\d+)(\d{3}\.\d{2})/)
-        place_comma.nil? ? final = formatted : final = formatted.match(/(\d+)(\d{3}\.\d{2})/).captures.join(",")
-        expect(page).to have_content("$#{final}")
+        expect(page).to have_content("$#{total.to_f/100}")
       end
 
     end
