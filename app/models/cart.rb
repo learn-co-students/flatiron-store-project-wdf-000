@@ -4,7 +4,11 @@ class Cart < ActiveRecord::Base
   belongs_to :user
 
   def total
-    self.items.collect{ |item| item.price }.inject(0){ |sum, price| sum + price }
+    item_quantities = Hash.new(0)
+    self.line_items.each_with_object(item_quantities) do |item, item_quantities|
+      item_quantities[item.id] = item.quantity
+    end
+    self.items.collect{ |item| item.price * item_quantities[item.id]  }.inject(0){ |sum, price| sum + price }
   end
 
   def add_item(item_number)
