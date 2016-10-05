@@ -7,11 +7,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-    <a class="navbar-brand" href="<%= root_url %>"/>Home</a>
+    <a class="navbar-brand" href="<%= store_path %>"/>Store Home</a>
     </div>
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        <li> <%= link_to "Store Home", store_path %> </li>
+        <li> <%= link_to "sign in", new_user_session_path %> </li>
+        <li> <%= link_to "Sign up", new_user_registration_path %> </li>
         <% if !!@cart %>
           <li> <%= link_to "Cart", cart_path(current_cart) %></li>
         <% end %>
