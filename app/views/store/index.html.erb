@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-md-6">
     <% @items.each do |item| %>
-      <p><%= item.title %> | <%= number_to_currency(item.price/100) %> | <%= button_to 'Add to Cart', line_items_path(item_id: item), class: 'btn btn-primary' %></p>
+      <p><%= item.title %> | <%= number_to_currency(item.price/100) %> | <%= button_to 'Add to Cart', line_items_path(item_id: item), class: 'btn btn-primary' if user_signed_in? %></p>
     <% end %>
   </div>
   <div class="col-md-6">
