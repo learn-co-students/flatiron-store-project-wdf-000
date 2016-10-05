@@ -21,9 +21,12 @@ group :test, :development do
   gem "simplecov"
   gem "database_cleaner"
   gem "sqlite3"
-  gem "pry"
+  gem "pry-rails"
   gem "guard-rspec", require: false
   gem "thin"
+  gem 'meta_request'
+  gem 'guard'
+  gem 'guard-livereload', '~> 2.5', require: false
 end
 
 gem "bootstrap-sass", "~> 3.1.1"
