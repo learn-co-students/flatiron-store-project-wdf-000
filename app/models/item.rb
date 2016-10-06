@@ -5,4 +5,8 @@ class Item < ActiveRecord::Base
   def self.available_items
     all.where('inventory > 0')
   end
+
+  def update_inventory(num)
+    update(inventory: inventory - num)
+  end
 end

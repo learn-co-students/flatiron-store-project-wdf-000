@@ -5,7 +5,7 @@ class Cart < ActiveRecord::Base
 
   def total
     # line_items.collect(&:item).collect(&:price).inject(:+).to_f
-    # should include quantity in calculation
+    # This needs major refatoring
     result = []
     line_items.collect do |l|
       items.each do |item|
@@ -16,10 +16,24 @@ class Cart < ActiveRecord::Base
   end
 
   def add_item(item_id)
-    line_item = LineItem.find_or_initialize_by(item_id: item_id)
-    line_item.cart_id = id unless line_item.cart_id
-    # update quantity unless new line item
-    line_item.update(quantity: line_item.quantity + 1) unless line_item.new_record?
+    if line_item = line_items.find_by(item_id: item_id)
+      # line_item.update(quantity: line_item.quantity + 1)
+      line_item.quantity += 1
+    else
+      line_item = line_items.build(item_id: item_id)
+    end
     line_item
   end
+
+  def checkout
+    line_items.each do |line_item| 
+      line_item.item.inventory -= line_item.quantity
+      line_item.item.save
+    end
+    self.status = nil
+    self.user.current_cart_id = nil
+    user.save
+    save
+  end
+
 end
