@@ -5,6 +5,6 @@ class ApplicationController < ActionController::Base
   helper_method :current_cart
 
   def current_cart
-    Cart.find_by(user: current_user)
+    Cart.find_or_create_by(user: current_user)
   end
 end
