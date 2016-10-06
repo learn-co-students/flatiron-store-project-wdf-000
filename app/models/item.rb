@@ -5,4 +5,8 @@ class Item < ActiveRecord::Base
   def self.available_items
     where("inventory > 0")
   end
+
+  def price_convert
+    price.to_f/100
+  end
 end

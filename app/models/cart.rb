@@ -4,7 +4,6 @@ class Cart < ActiveRecord::Base
   has_many :items, through: :line_items
 
   def total
-    # items.map(&:price).reduce(:+)
     total = 0
     items.map do |item|
       li = self.line_items.find {|li| li.item_id == item.id}
@@ -15,7 +14,6 @@ class Cart < ActiveRecord::Base
 
   def add_item(item_id)
     li = LineItem.find_or_initialize_by(cart_id: id, item_id: item_id)
-    # self.line_items << li
   end
 
   def update_inventory
