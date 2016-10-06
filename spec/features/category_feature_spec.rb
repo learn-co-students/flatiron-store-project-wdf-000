@@ -2,8 +2,10 @@ describe 'Feature Test: Category', :type => :feature do
 
   describe "Item List" do
     before(:each) do
+      @user = create(:user)
       @category = Category.first
       @items = @category.items
+      login_as(@user, scope: :user)
       visit category_path(@category)
     end
 

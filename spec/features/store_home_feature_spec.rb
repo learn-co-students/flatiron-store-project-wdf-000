@@ -1,5 +1,9 @@
 describe 'Feature Test: Store', :type => :feature do
     describe "Category List" do
+      before(:each) do
+        @user = create(:user)
+        login_as(@user, scope: :user)
+      end
       it "displays all of the categories as links" do
         visit store_path
         Category.all.each do |category|
@@ -9,6 +13,10 @@ describe 'Feature Test: Store', :type => :feature do
     end
 
     describe "Item List" do
+      before(:each) do
+        @user = create(:user)
+        login_as(@user, scope: :user)
+      end
       it 'displays all items that have inventory' do
         second_item = Item.second
         second_item.inventory = 0
