@@ -17,15 +17,18 @@ class Cart < ActiveRecord::Base
   def add_item(item_id)
     # LineItem.where(cart: self, item_id: item_id).first_or_initialize
     new_line_item = LineItem.find_or_initialize_by(cart: self, item_id: item_id)
-    # self.line_items << new_line_item
-    # self.save
   end
 
-  def update_inventory
+  def update_inventory_and_status
     line_items.each do |li|
       li.item.inventory -= li.quantity
       li.item.save
     end
+    update_status
+  end
+
+  def update_status
+    self.status = 'submitted'
   end
 
 end

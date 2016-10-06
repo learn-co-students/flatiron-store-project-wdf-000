@@ -6,10 +6,11 @@ class CartsController < ApplicationController
 
   def checkout
     cart = Cart.find_by(id: params[:id])
-    cart.update_inventory
+    cart.update_inventory_and_status
+    cart.save
     current_user.current_cart = nil
     current_user.save
-
+binding.pry
     redirect_to cart_path(cart)
   end
 
