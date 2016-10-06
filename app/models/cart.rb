@@ -4,7 +4,15 @@ class Cart < ActiveRecord::Base
   has_many :items, through: :line_items
 
   def total
-    line_items.collect(&:item).collect(&:price).inject(:+).to_f
+    # line_items.collect(&:item).collect(&:price).inject(:+).to_f
+    # should include quantity in calculation
+    result = []
+    line_items.collect do |l|
+      items.each do |item|
+        result << item.price * l.quantity if l.item_id == item.id
+      end
+    end
+    result.inject(:+).to_f
   end
 
   def add_item(item_id)
