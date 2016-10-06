@@ -2,6 +2,9 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   before(:each) do
+    # this create method is available because of adding FactoryGirl to the
+    # Rails_spec_helper
+    create(:user)
     @user = User.first
   end
 
