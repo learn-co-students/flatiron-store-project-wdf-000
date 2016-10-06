@@ -14,7 +14,6 @@ class LineItemsController < ApplicationController
       current_user.current_cart.items << item
     end
     current_user.save
-    # binding.pry
 
     redirect_to cart_path(current_user.current_cart)
   end

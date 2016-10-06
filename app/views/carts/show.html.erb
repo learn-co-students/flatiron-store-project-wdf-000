@@ -1,13 +1,9 @@
 <h1>Your Cart</h1>
 
-<% if notice %>
-  <p><%= notice %></p> 
-<% end %>
-
 <% if current_user.current_cart %>
 
   <% current_user.current_cart.line_items.each do |line_item| %>
-    <p><%= link_to line_item.item.title, item_path(line_item.item) %> | <%= number_to_currency(line_item.item.price) %> | Quantity: <%= line_item.quantity %> | <% if line_item.item.inventory < 5 %>
+    <p><%= link_to line_item.item.title, item_path(line_item.item) %> | <%= number_to_currency(line_item.item.price/100) %> | Quantity: <%= line_item.quantity %> | <% if line_item.item.inventory < 5 %>
       <strong>There are only <%= line_item.item.inventory %> left in stock.</strong>
     <% end %> </p>
 <% end %>
@@ -15,6 +11,6 @@
 <%# <p>Order total: <strong><%#= number_to_currency(current_user.current_cart.total) %1></strong> </p> %>
 
 Order total: <strong>$<%= current_user.current_cart.total.to_f/100 %> </strong>
-<%= button_to 'Checkout', checkout_path %>
+<%= button_to 'Checkout', checkout_path, class: 'btn btn-primary' %>
 
 <% end %>
