@@ -1,3 +1,8 @@
 <% @categories.each do |category| %>
-  <%= @category.title %>
+  <strong> <%= category.title %> </strong>
+  <ul>
+    <% category.items.each do |item| %>
+      <li><%= item.title %> | <%= "$#{item.price.to_f/100}" %></li>
+    <% end %>
+  </ul>
 <% end %>
