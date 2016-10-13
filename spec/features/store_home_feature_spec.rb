@@ -28,7 +28,7 @@ describe 'Feature Test: Store', :type => :feature do
 
         it 'does not display "Add To Cart" button' do
           visit store_path
-          expect(page).to_not have_content "Add To Cart"
+          expect(page).to_not have_selector("input[type=submit][value='Add to Cart']")
         end
 
       end
@@ -65,6 +65,7 @@ describe 'Feature Test: Store', :type => :feature do
 
       context "logged in" do
         before(:each) do
+          # FactoryGirl.create :user
           @user = User.first
           login_as(@user, scope: :user)
         end
