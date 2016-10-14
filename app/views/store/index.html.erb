@@ -3,5 +3,19 @@
 <% end %>
 
 <% @items.each do |item| %>
-  <p><%= item.title %> | <%= number_to_currency(item.price) %> | <%= button_to 'Add to Cart', line_items_path(item_id: item) %></p>
+  <% if item.inventory > 0 %>
+  <p><%= item.title %> | <%= number_to_currency(item.price.to_f/100) %> | <%= button_to 'Add to Cart', line_items_path(item_id: item) %></p>
+  <% end %>
+<% end %>
+
+<% if  @user != nil && !@user.current_cart.nil? %>
+<%= link_to "Cart", cart_path(@user.current_cart) %>
+<% end %>
+
+<% if current_user == nil %>
+  <%= link_to "sign in", new_user_session_path %>
+  <%= link_to "Sign up", new_user_registration_path %>
+<% else %>
+  <h1>Signed in as <%= current_user.email %></h1>
+  <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
 <% end %>
