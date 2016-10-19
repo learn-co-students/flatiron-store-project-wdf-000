@@ -10,6 +10,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
 group :test, :development do
+  gem "pry-rails"
   gem "rspec-rails"
   gem "capybara"
   gem "launchy"
@@ -21,7 +22,6 @@ group :test, :development do
   gem "simplecov"
   gem "database_cleaner"
   gem "sqlite3"
-  gem "pry"
   gem "guard-rspec", require: false
   gem "thin"
 end
