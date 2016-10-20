@@ -15,6 +15,15 @@ describe 'Feature Test: Cart', :type => :feature do
       end
 
      it "Lists all items in the cart" do
+       @user = User.first
+       @user.current_cart = @user.carts.create
+       @current_cart = @user.current_cart
+       @first_item = Item.first
+       @first_item.line_items.create(quantity: 1, cart: @user.current_cart)
+       @second_item = Item.second
+       @second_line_item = @second_item.line_items.create(quantity: 1, cart: @user.current_cart)
+       login_as(@user, scope: :user)
+
        visit cart_path(@user.current_cart)
        expect(page).to have_content(@first_item.title)
        expect(page).to have_content(@second_item.title)
@@ -52,7 +61,7 @@ describe 'Feature Test: Cart', :type => :feature do
        click_button("Checkout")
 
        @user.reload
-       expect(@user.current_cart).to be_nil 
+       expect(@user.current_cart).to be_nil
      end
     end
   end
@@ -65,12 +74,15 @@ describe 'Feature Test: Cart', :type => :feature do
       end
 
       it "Doesn't show Cart link when there is no current cart" do
+        # binding.pry
         cart = @user.carts.create(status: "submitted")
         first_item = Item.first
         first_item.line_items.create(quantity: 1, cart: cart)
         @user.current_cart = nil
         visit store_path
+
         expect(page).to_not have_link("Cart")
+
       end
 
       it "Does show Cart link when there is a current cart" do
@@ -79,6 +91,7 @@ describe 'Feature Test: Cart', :type => :feature do
         first_item.line_items.create(quantity: 1, cart: @user.current_cart)
         @user.save
         visit store_path
+
         expect(page).to have_link("Cart", href: cart_path(@user.current_cart))
       end
 
@@ -91,6 +104,7 @@ describe 'Feature Test: Cart', :type => :feature do
           click_button("Add to Cart")
         end
         @user.reload
+
         expect(@user.current_cart).to_not be_nil
       end
 
@@ -140,15 +154,17 @@ describe 'Feature Test: Cart', :type => :feature do
 
       it "Updates quantity when selecting the same item twice" do
         first_item = Item.first
-        2.times do 
+        2.times do
           visit store_path
           within("form[action='#{line_items_path(item_id: first_item)}']") do
             click_button("Add to Cart")
           end
+
         end
         @user.reload
         expect(@user.current_cart.items.count).to eq(1)
         expect(@user.current_cart.line_items.count).to eq(1)
+        # binding.pry
         expect(@user.current_cart.line_items.first.quantity).to eq(2)
         expect(page).to have_content("Quantity: 2")
         total = first_item.price * 2
