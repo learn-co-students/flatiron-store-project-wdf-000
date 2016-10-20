@@ -53,6 +53,7 @@ describe 'Feature Test: Store', :type => :feature do
 
         it 'has a sign in link' do
           visit store_path
+      
           expect(page).to have_link("sign in")
         end
 
