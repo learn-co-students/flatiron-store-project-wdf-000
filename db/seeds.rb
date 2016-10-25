@@ -5,6 +5,7 @@
     price: Faker::Number.number(4)
   )
   Category.create(title: Faker::Commerce.department)
+  User.create(name: Faker::Name.name, email: Faker::Internet.email, password: Faker::Internet.password(10, 20))
 end
 
 counter = 1
@@ -13,3 +14,5 @@ Item.all.each do |item|
   item.save
   counter += 1
 end
+
+

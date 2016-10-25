@@ -2,6 +2,11 @@
 
 <ul>
 <% @category.items.each do |item| %>
-    <li><%= link_to item.title, item_path(item) %></li>
+    <li><%= link_to item.title, item_path(item) %>
+    <% if user_signed_in? %>
+      <input type="submit" value="Add to Cart" >
+      <% end %>
+      <%= "$#{item.price.to_f/100}" %>
+    </li>
 <% end %>
 </ul>
