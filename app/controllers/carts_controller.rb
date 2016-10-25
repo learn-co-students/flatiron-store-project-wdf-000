@@ -1,7 +1,7 @@
 class CartsController < ApplicationController
   before_action :authenticate_user!
-  def show
 
+  def show
   end
 
   def checkout
@@ -10,6 +10,5 @@ class CartsController < ApplicationController
     session[:checkout] = true
     redirect_to cart_path(cart)
   end
-
 
 end

@@ -1,8 +1,5 @@
 <h1>Your Cart</h1>
 
-<% if notice %>
-  <p><%= notice %></p>
-<% end %>
 
 <% current_cart.line_items.each do |line_item| %>
   <p><%= link_to line_item.item.title, item_path(line_item.item) %> | <%= number_to_currency(line_item.item.price) %> | Quantity: <%= line_item.quantity %> | <% if line_item.item.inventory < 5 %>
