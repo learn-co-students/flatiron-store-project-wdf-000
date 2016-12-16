@@ -6,7 +6,6 @@ class ApplicationController < ActionController::Base
 
 
   def current_cart
-    Cart.find_by(params[:id])
+    current_user.carts.find_by(params[:user_id]) 
   end
-
 end
