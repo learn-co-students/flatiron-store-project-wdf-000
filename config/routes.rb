@@ -13,4 +13,6 @@ Rails.application.routes.draw do
 
   post 'carts/:id', to: 'carts#checkout', as: 'checkout'
 
+  post 'users/:id', to: 'items#index', as: 'order-history'
+
 end

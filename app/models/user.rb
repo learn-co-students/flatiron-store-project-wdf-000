@@ -9,4 +9,5 @@ class User < ActiveRecord::Base
   has_many :items, through: :orders
   belongs_to :current_cart, :class_name => "Cart"
 
+
 end

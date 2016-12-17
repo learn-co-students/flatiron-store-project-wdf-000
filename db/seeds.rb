@@ -5,6 +5,8 @@
     price: Faker::Number.number(4)
   )
   Category.create(title: Faker::Commerce.department)
+end
+5.times do
   User.create(
     email: Faker::Internet.email,
     password: Faker::Internet.password
