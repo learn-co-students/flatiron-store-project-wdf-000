@@ -3,6 +3,6 @@ class Item < ActiveRecord::Base
   has_many :line_items
 
   def self.available_items
-    self.where.not("inventory <= ?", 0)
+    self.where("inventory >= ?", 1)
   end
 end
