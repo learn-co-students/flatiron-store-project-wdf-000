@@ -12,13 +12,13 @@ class Cart < ActiveRecord::Base
 
   def add_item(item_id)
     if current_item = line_items.where(item_id: item_id).first
-      current_item.increment(:quantity, current_item.item_id)
+      current_item.increment!(:quantity, current_item.item_id)
     else
       current_item = line_items.build(item_id: item_id)
     end
     current_item
   end
-#TODO convert cart to @order /make status update work
+#TODO convert cart to @order /make status update work/ dry_clean
   def checking_out
     line_items.each do |line_item|
       line_item.item.update(inventory: line_item.item.inventory -= line_item.quantity)
