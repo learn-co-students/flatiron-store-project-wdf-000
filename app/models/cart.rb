@@ -27,7 +27,7 @@ class Cart < ActiveRecord::Base
 
   def checked_out
     line_items.clear
-    update(status: 1)
+    update!(status: 1)
     user.update(current_cart_id: nil)
     line_items.clear
   end
