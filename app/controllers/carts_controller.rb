@@ -8,6 +8,6 @@ class CartsController < ApplicationController
 
   def checkout
     current_cart.checking_out
-    redirect_to cart_path(current_cart)
+    redirect_to cart_path(current_cart), notice: "Order submitted"
   end
 end
