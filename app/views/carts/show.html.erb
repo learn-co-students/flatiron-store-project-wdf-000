@@ -1,17 +1,11 @@
 <h1>Your Cart</h1>
 
-<% current_cart.line_items.each do |line_item| %>
-<<<<<<< HEAD
-  <p><%= link_to line_item.item.title, item_path(line_item.item) %> | <%= number_to_currency(line_item.item.price/100) %> | Quantity: <%= line_item.quantity %> |
-    <% if line_item.item.inventory < 5 %></p>
-    <strong>There are only <%= line_item.item.inventory %> left in stock.</strong>
-=======
+<% current_cart.line_items.each do |line_item| %> |
   <% unless line_item.item.inventory <= 0 %>
-  <p><%= link_to line_item.item.title, item_path(line_item.item) %> | <%= number_to_currency(line_item.item.price/100) %> | Quantity: <%= line_item.quantity %> | 
+  <p><%= link_to line_item.item.title, item_path(line_item.item) %> | <%= number_to_currency(line_item.item.price/100) %> | Quantity: <%= line_item.quantity %> |
     <% if line_item.item.inventory < 5 %>
     <strong>There are only <%= line_item.item.inventory %> left in stock!</strong>
     <% end %> </p>
->>>>>>> 00262675e0bb3c0d7741c1c857f52bf19a96762f
   <% end %>
 <% end %>
 
