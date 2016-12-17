@@ -16,7 +16,7 @@ class Cart < ActiveRecord::Base
     end
     current_item
   end
-#TODO convert cart to @order
+#TODO convert cart to @order/make status update work
   def checking_out
     line_items.each do |line_item|
       line_item.item.update(inventory: line_item.item.inventory -= line_item.quantity)
