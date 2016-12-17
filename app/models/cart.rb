@@ -1,5 +1,5 @@
 class Cart < ActiveRecord::Base
-  enum status: [ :not_submitted, :submitted]
+  enum status: [:not_submitted, :submitted]
   has_many :line_items
   has_many :items, through: :line_items
   belongs_to :user
