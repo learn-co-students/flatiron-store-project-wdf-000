@@ -12,7 +12,9 @@ class ItemsController < ApplicationController
   end
 
   def destroy
+    @item = Item.find(params[:id])
   end
 
   private
+  params.require(:item).permit(:title, :inventory, :price, :categorey_id)
 end

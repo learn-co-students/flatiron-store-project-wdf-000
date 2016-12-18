@@ -11,6 +11,4 @@ class CartsController < ApplicationController
     current_user_cart.checked_out
     redirect_to cart_path(current_user_cart), notice: "Order submitted"
   end
-
-  private
 end

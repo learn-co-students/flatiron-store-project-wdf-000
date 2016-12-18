@@ -18,13 +18,12 @@ class Cart < ActiveRecord::Base
     end
     current_item
   end
-#TODO convert cart to @order /make status update work/ dry_clean
+#TODO convert @cart to @order & dry_clean
   def checking_out
     line_items.each do |line_item|
       line_item.item.update(inventory: line_item.item.inventory -= line_item.quantity)
     end
     update(status: 1)
-
   end
 
   def checked_out

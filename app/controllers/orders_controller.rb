@@ -1,20 +1,20 @@
 class OrdersController < ApplicationController
-  before_action :set_order only: [:show]
+  before_action :set_order only: [:show, :ship]
 
   def show
   end
 
   def shipped
-    self.shipping
+    @order.ship
   end
 
   private
 
   def set_order
-    @order = Order.find(params[:id])
+    @order = Order.find(order_params)
   end
 
   def order_params
-    params.require(:order).permit(:user_id, :cart_id)
+    params.require(:order).permit(:user_id, :cart_id, :status)
   end
 end
