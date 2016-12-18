@@ -23,12 +23,13 @@ class Cart < ActiveRecord::Base
     line_items.each do |line_item|
       line_item.item.update(inventory: line_item.item.inventory -= line_item.quantity)
     end
+    update(status: 1)
+
   end
 
   def checked_out
-    line_items.clear
-    update!(status: 1)
+    cart = nil
     user.update(current_cart_id: nil)
-    line_items.clear
+    user.save
   end
 end

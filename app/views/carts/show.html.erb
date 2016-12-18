@@ -1,6 +1,6 @@
 <h1>Your Cart</h1>
-
-<% current_cart.line_items.each do |line_item| %> |
+<% if !current_user_cart.nil? %>
+<% current_user_cart.line_items.each do |line_item| %> |
   <% unless line_item.item.inventory <= 0 %>
   <p><%= link_to line_item.item.title, item_path(line_item.item) %> | <%= number_to_currency(line_item.item.price/100) %> | Quantity: <%= line_item.quantity %> |
     <% if line_item.item.inventory < 5 %>
@@ -9,8 +9,8 @@
   <% end %>
 <% end %>
 
-<p>Order total: <strong><%= number_to_currency(current_cart.total/100) %></strong> </p>
+<p>Order total: <strong><%= number_to_currency(current_user_cart.total/100) %></strong> </p>
 
-<% if current_user.current_cart %>
+
 <%= button_to 'Checkout', checkout_path %>
 <% end %>
