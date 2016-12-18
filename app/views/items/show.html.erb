@@ -3,7 +3,7 @@
 <h2>there are only <%= @item.inventory %> left in stock! which is only <%= @item.inventory %> more than 0</h2>
 
 <% if user_signed_in? %>
-<strong><%= button_to 'Buy It Now!', line_items_path(item_id: item) %></strong>
+<strong><%= button_to 'Buy It Now!', line_items_path(item_id: @item) %></strong>
 <% else %>
 <strong>Sign in or Sign up to purchase</strong>
 <% end %>

@@ -9,10 +9,4 @@ class User < ActiveRecord::Base
   has_many :items, through: :orders
   belongs_to :current_cart, :class_name => "Cart"
 
-  # def current_cart
-  #   # unless carts.last == nil
-  #
-  #     carts.last
-  #   # end
-  # end
 end
