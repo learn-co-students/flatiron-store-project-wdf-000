@@ -6,6 +6,6 @@ class Order < ActiveRecord::Base
   has_many :items, through: :line_items
 
   def ship
-    update(status: 1)
+    self.update(status: 1)
   end
 end

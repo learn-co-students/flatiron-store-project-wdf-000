@@ -3,7 +3,7 @@ class Cart < ActiveRecord::Base
   has_many :line_items
   has_many :items, through: :line_items
   belongs_to :user
-  has_one :order
+  belongs_to :order
 
 
   def total
@@ -23,11 +23,11 @@ class Cart < ActiveRecord::Base
     line_items.each do |line_item|
       line_item.item.update(inventory: line_item.item.inventory -= line_item.quantity)
     end
-    update(status: 1)
+    self.update(status: 1)
   end
 
   def checked_out
-    user.update(current_cart_id: nil)
-    user.save
+    self.user.update(current_cart_id: nil)
+    self.user.save
   end
 end
