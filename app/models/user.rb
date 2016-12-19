@@ -7,6 +7,6 @@ class User < ActiveRecord::Base
   has_many :carts
   has_many :orders
   has_many :items, through: :orders
-  belongs_to :current_cart, :class_name => "Cart"
+  belongs_to :current_cart, class_name: :Cart
 
 end

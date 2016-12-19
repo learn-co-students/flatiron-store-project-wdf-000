@@ -16,5 +16,5 @@ class ItemsController < ApplicationController
   end
 
   private
-  params.require(:item).permit(:title, :inventory, :price, :categorey_id)
+  params.require(:item).permit(:title, :inventory, :price, categorey_ids: [])
 end

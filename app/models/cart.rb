@@ -27,7 +27,6 @@ class Cart < ActiveRecord::Base
   end
 
   def checked_out
-    cart = nil
     user.update(current_cart_id: nil)
     user.save
   end
