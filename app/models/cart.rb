@@ -5,7 +5,6 @@ class Cart < ActiveRecord::Base
   belongs_to :user
   belongs_to :order
 
-
   def total
     line_items.collect{|line_item| line_item.quantity * line_item.item.price}.sum
   end
