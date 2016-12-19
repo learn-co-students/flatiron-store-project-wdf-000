@@ -11,10 +11,6 @@ class OrdersController < ApplicationController
   private
 
   def set_order
-    @order = Order.find(order_params)
-  end
-
-  def order_params
-    params.require(:order).permit(:user_id, :cart_id, :status)
+    @order = Order.find(params[:id])
   end
 end
