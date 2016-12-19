@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper_method :current_user_cart
 
+  private
 
   def current_user_cart
     current_user.current_cart
