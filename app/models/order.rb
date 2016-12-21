@@ -1,7 +1,7 @@
 class Order < ActiveRecord::Base
   enum status: [:pending, :shipped]
   has_one :cart
-  belongs_to :user
+  delegate :user, to: :cart
   has_many :line_items
   has_many :items, through: :line_items
 
