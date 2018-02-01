@@ -1,2 +1,10 @@
-<h1><%= @item.title %></h1>
-<h2>$ <%= @item.price %></h2>
+<h1><%= @item.title %> | <%= number_to_currency(@item.price/100) %></h1>
+<h3><%= @item.description %></h3>
+
+<h4>there are only <%= @item.inventory %> left in stock! which is only <%= @item.inventory %> more than 0</h4>
+
+<% if user_signed_in? %>
+<strong><%= button_to 'Buy It Now!', line_items_path(item_id: @item) %></strong>
+<% else %>
+<strong>Sign in or Sign up to purchase</strong>
+<% end %>
